@@ -4,11 +4,12 @@ import { useContext } from 'react';
 import { ExtensionsContext } from '../ExtensionsContext';
 
 export default function ExtensionLists (){
-  const { toggleSwitch, extensionsData, filter } = useContext(ExtensionsContext);
+  const { toggleSwitch, extensionsData, filter, searchtext} = useContext(ExtensionsContext);
 
   const list = extensionsData.filter(item => {
   if (filter === "active") return item.isActive;
   if (filter === "inactive") return !item.isActive;
+  if (!item.name.toLowerCase().includes(searchtext.toLowerCase())) return false;
   return true; 
   });
 

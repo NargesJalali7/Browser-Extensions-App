@@ -4,20 +4,13 @@ import ExtensionLists from './ExtensionsList/ExtensionsList';
 import SearchBar from './SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
 import { ExtensionsContext } from './ExtensionsContext';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
-
-const theme = createTheme({
-  palette: {
-    background: {
-      default: '#481dacff', 
-    },
-  },
-});
+import { Box, CssBaseline } from '@mui/material';
 
 
 function App() {
   const [extensionsData, setExtensionsData] = useState<ExtensionsLogosTypes[]>([]);
   const [filter, setFilter] = useState<"all" | "active" | "inactive">("all");
+  const [searchtext, setSearchtext] = useState("");
 
   useEffect(() => {
     const savedExtensions = localStorage.getItem('AddedExtensions');
@@ -43,18 +36,23 @@ function App() {
     localStorage.setItem("AddedExtensions", JSON.stringify(updated));
   };
 
+  const searchExtensions = (searchtext: string) => {
+    extensionsData.map((item) => 
+      item.name === searchtext.trim() ? setFilter('active') : item
+    );
+  }
+
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline /> 
-        <ExtensionsContext.Provider value={{toggleSwitch, extensionsData, setExtensionsData, filter, setFilter}}>
+      <CssBaseline />
+      <Box sx={{ minHeight: '100vh', width: '100vw',  background: 'linear-gradient(rgba(104,52,235,1), #1c0b42)'}}>
+        <ExtensionsContext.Provider value={{toggleSwitch, extensionsData, setExtensionsData, filter, setFilter, searchtext, setSearchtext, searchExtensions}}>
           <SearchBar />
 
           <ExtensionLists />
         </ExtensionsContext.Provider>
-      </ThemeProvider>
-     
+      </Box>
     </>
   )
 }

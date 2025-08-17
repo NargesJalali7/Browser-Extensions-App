@@ -13,7 +13,10 @@ type ExtensionsContextType = {
   extensionsData: ExtensionsLogosTypes[];
   setExtensionsData: React.Dispatch<React.SetStateAction<ExtensionsLogosTypes[]>>;
   filter: "all" | "active" | "inactive";
-  setFilter: React.Dispatch<React.SetStateAction<"all" | "active" | "inactive">>
+  setFilter: React.Dispatch<React.SetStateAction<"all" | "active" | "inactive">>;
+  searchtext: string;
+  setSearchtext: React.Dispatch<React.SetStateAction<string>>
+  searchExtensions: (searchtext: string) => void;
 }
 
 export const ExtensionsContext = createContext<ExtensionsContextType>({
@@ -22,4 +25,7 @@ export const ExtensionsContext = createContext<ExtensionsContextType>({
   setExtensionsData: () => {},
   filter: 'all',
   setFilter: () => {},
+  searchtext: '',
+  setSearchtext: () => {},
+  searchExtensions: () => {},
 })
