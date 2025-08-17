@@ -13,7 +13,8 @@ export default function ExtensionLists (){
   });
 
   return (
-    <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={2} sx={{ pt: 2, pr: 10, pb: 5, pl: 10 }}>
+    <Box display="grid" gridTemplateColumns='repeat(auto-fit, minmax(250px, 1fr))' gridTemplateRows='repeat(auto-fill, minmax(150px, auto))' gap={2} sx={{ px: { xs: 2, sm: 3, md: 5 }, pb: 5 }} >
+
       {list.map((extension) => (
         <Card key={extension.name} sx={{ bgcolor: "#1b1d2b", color: "white" }}>
           <CardHeader
@@ -21,7 +22,7 @@ export default function ExtensionLists (){
             title={extension.name}
           />
           <CardContent>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            <Typography variant="body2" sx={{ color: "white" }}>
               {extension.description}
             </Typography>
           </CardContent>
