@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ExtensionsContext } from '../ExtensionsContext';
   
 export default function SearchBar () {
-  const { setFilter, searchtext, setSearchtext } = useContext(ExtensionsContext);
+  const { setFilter, searchtext, setSearchtext, selectedExtension } = useContext(ExtensionsContext);
 
  return (
   <>
@@ -13,7 +13,7 @@ export default function SearchBar () {
       justifyContent={{ xs: "center", md: "space-between" }} 
       flexDirection={{ xs: "column", md: "row" }}            
       gap={2}
-      sx={{ px: { xs: 2, sm: 3, md: 5 }, pt: { xs: 2, sm: 3, md: 5 }, pb: 2 }}
+      sx={{ px: { xs: 2, sm: 3, md: 5 }, pt: { xs: 2, sm: 3, md: 5 }, pb: 2, marginRight: selectedExtension ? '350px' : 2, transition: 'margin-right 0.3s ease', }}
     >
       <TextField
           fullWidth

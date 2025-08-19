@@ -17,6 +17,8 @@ type ExtensionsContextType = {
   searchtext: string;
   setSearchtext: React.Dispatch<React.SetStateAction<string>>
   searchExtensions: (searchtext: string) => void;
+  selectedExtension: ExtensionsLogosTypes | null;
+  setSelectedExtension: React.Dispatch<React.SetStateAction<ExtensionsLogosTypes | null>>;
 }
 
 export const ExtensionsContext = createContext<ExtensionsContextType>({
@@ -28,4 +30,6 @@ export const ExtensionsContext = createContext<ExtensionsContextType>({
   searchtext: '',
   setSearchtext: () => {},
   searchExtensions: () => {},
+  selectedExtension: null,
+  setSelectedExtension: () => {},
 })

@@ -5,12 +5,14 @@ import SearchBar from './SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
 import { ExtensionsContext } from './ExtensionsContext';
 import { Box, CssBaseline } from '@mui/material';
+import SideBar from './SideBar/sideBar';
 
 
 function App() {
   const [extensionsData, setExtensionsData] = useState<ExtensionsLogosTypes[]>([]);
   const [filter, setFilter] = useState<"all" | "active" | "inactive">("all");
   const [searchtext, setSearchtext] = useState("");
+  const [selectedExtension, setSelectedExtension] = useState<ExtensionsLogosTypes | null>(null)
 
   useEffect(() => {
     const savedExtensions = localStorage.getItem('AddedExtensions');
@@ -46,11 +48,14 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <Box sx={{ minHeight: '100vh', width: '100vw',  background: 'linear-gradient(rgba(104,52,235,1), #1c0b42)'}}>
-        <ExtensionsContext.Provider value={{toggleSwitch, extensionsData, setExtensionsData, filter, setFilter, searchtext, setSearchtext, searchExtensions}}>
+      <Box sx={{ minHeight: '100vh', width: '100vw',  background: 'linear-gradient(rgba(104,52,235,1), #0b031bff)'}}>
+        <ExtensionsContext.Provider value={{toggleSwitch, extensionsData, setExtensionsData, filter, setFilter, searchtext, setSearchtext, searchExtensions, selectedExtension, setSelectedExtension}}>
           <SearchBar />
 
           <ExtensionLists />
+
+          <SideBar />
+          
         </ExtensionsContext.Provider>
       </Box>
     </>
